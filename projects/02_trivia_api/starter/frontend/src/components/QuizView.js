@@ -46,9 +46,9 @@ class QuizView extends Component {
   getNextQuestion = () => {
     const previousQuestions = [...this.state.previousQuestions]
     if(this.state.currentQuestion.id) { previousQuestions.push(this.state.currentQuestion.id) }
-
+    
     $.ajax({
-      url: '/quizzes', //TODO: update request URL
+      url: '/play',
       type: "POST",
       dataType: 'json',
       contentType: 'application/json',
@@ -150,6 +150,7 @@ class QuizView extends Component {
   }
 
   renderPlay(){
+    console.log(this.state);
     return this.state.previousQuestions.length === questionsPerPlay || this.state.forceEnd
       ? this.renderFinalScore()
       : this.state.showAnswer 
